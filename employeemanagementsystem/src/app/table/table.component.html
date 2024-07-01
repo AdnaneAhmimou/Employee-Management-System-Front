@@ -1,0 +1,36 @@
+<div class="relative w-full overflow-auto">
+  <table class="w-full caption-bottom text-sm">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Position</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.phoneNumber }}</td>
+        <td>{{ employee.position }}</td>
+        <td>{{ employee.department }}</td>
+        <td>
+          <app-update-button (onClick)="openUpdateModal(employee)"></app-update-button>
+          <app-delete-button (onClick)="onDelete(employee.id)"></app-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-update-modal
+    *ngIf="showUpdateModal"
+    [employee]="selectedEmployee"
+    (onClose)="closeUpdateModal()"
+    (onUpdate)="updateEmployee($event)"
+  ></app-update-modal>
+</div>

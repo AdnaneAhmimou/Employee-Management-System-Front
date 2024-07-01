@@ -1,0 +1,39 @@
+<!-- app.component.html -->
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">{{ error }}</div>
+<div *ngIf="!loading && !error">
+  <div class="p-4">
+    <div class="grid grid-cols-3 gap-4">
+      <div>
+        <app-label>First Name</app-label>
+        <app-input [(ngModel)]="newEmployee.firstName" type="text" name="firstName"></app-input>
+      </div>
+      <div>
+        <app-label>Last Name</app-label>
+        <app-input [(ngModel)]="newEmployee.lastName" type="text" name="lastName"></app-input>
+      </div>
+      <div>
+        <app-label>Email</app-label>
+        <app-input [(ngModel)]="newEmployee.email" type="email" name="email"></app-input>
+      </div>
+      <div>
+        <app-label>Phone Number</app-label>
+        <app-input [(ngModel)]="newEmployee.phoneNumber" type="tel" name="phoneNumber"></app-input>
+      </div>
+      <div>
+        <app-label>Position</app-label>
+        <app-input [(ngModel)]="newEmployee.position" type="text" name="position"></app-input>
+      </div>
+      <div>
+        <app-label>Department</app-label>
+        <app-input [(ngModel)]="newEmployee.department" type="text" name="department"></app-input>
+      </div>
+    </div>
+    
+    <div class="flex justify-center mt-4">
+      <app-add-button (click)="addEmployee()">Add Employee</app-add-button>
+    </div>
+  </div>
+
+  <app-table [employees]="employees" (deleteEmployee)="deleteEmployee($event)"></app-table>
+</div>
